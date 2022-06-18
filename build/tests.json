@@ -1,0 +1,13 @@
+{
+  "contracts": {},
+  "tests": {
+    "scripts/test_Score.py": {
+      "coverage": false,
+      "isolated": false,
+      "results": "F",
+      "sha1": "d1d482dabdba929214576fe6f4f15bbd9372b486",
+      "txhash": []
+    }
+  },
+  "tx": {}
+}

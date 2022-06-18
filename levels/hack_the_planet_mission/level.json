@@ -1,0 +1,19 @@
+{
+  "title": "Hack the Planet",
+  "description": "This is the 'training mission' for the Hack the Planet simulator!",
+  "questTitle": "Level One: Workspace Setup",
+  "questDescription": "Set up your battle station!",
+  "mission_icon": "mission_icon.png",
+  "is_mission": true,
+  "priority": 10,
+  "backgroundMusic": "hackertheme_104771b",
+  "backgroundEffect": {
+    "key": "vr",
+    "options": {}
+  },
+  "flavorTextOverrides": {
+    "bookshelf": "Machine Learning: Pocket Reference Guide."
+  },
+  "objectives": ["example_objective", "example_objective2"]
+}
+ 

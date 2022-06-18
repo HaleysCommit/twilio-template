@@ -1,48 +1,40 @@
-/*
-In your validation code, you can require core Node.js modules,
-third-party modules from npm, or your own code, just like a regular
-Node.js module (since that's what this is!)
-*/
-const assert = require("assert");
-const R = require("ramda");
-const { isTwilio } = require("../lib/example_helper");
+const path = require("path");
+const jetpack = require("fs-jetpack");
+const {
+  NiceError,
+  executeScript,
+} = require("../../../../scripts/objectiveValidation");
 
-/*
-Objective validators export a single function, which is passed a helper
-object. The helper object contains information passed in from the game UI,
-such as what the player entered into the fields in the hack interface.
+module.exports = async (helper) => {
+    const { programPath } = helper.validationFields;
 
-The helper object also has "success" and "fail" callback functions - use
-these functions to let the game (and the player) know whether or not they 
-have completed the challenge as instructed.
-*/
-module.exports = async function (helper) {
-  // We start by getting the user input from the helper
-  const { answer1, answer2 } = helper.validationFields;
+    if (!programPath) {
+      throw new NiceError(`
+        Please provide a path to your Python script - e.g. C:\\code\\salutation.py
+      `);
+    }
 
-  // Next, you test the user input - fail fast if they get one of the
-  // answers wrong, or some aspect is wrong! Don't provide too much
-  // negative feedback at once, have the player iterate.
-  if (!answer1 || !isTwilio(answer1)) {
-    return helper.fail(`
-      The answer to the first question is incorrect. The company that
-      makes TwilioQuest starts with a "T" and ends with a "wilio".
-    `);
-  }
+    const exists = await jetpack.existsAsync(programPath);
+    if (!exists) {
+      throw new NiceError(`
+        We couldn't find a file at the path you provided. Please double check
+        that the file path you pasted in the test field is correct.
+      `);
+    }
 
-  // You can use npm or core Node.js dependencies in your validators!
-  try {
-    assert.strictEqual(R.add(2, 2), Number(answer2));
-  } catch (e) {
-    return helper.fail(`
-      The second answer you provided was either not a number, or not the
-      correct response for "what is 2 + 2".
-    `);
-  }
+    const stdout = await executeScript(helper.env.TQ_PYTHON_EXE, programPath);
+    console.log(stdout);
 
-  // The way we usually write validators is to fail fast, and then if we reach
-  // the end, we know the user got all the answers right!
-  helper.success(`
-    Hooray! You did it!
-  `);
-};
+    helper.success(
+      `
+      Great work! You have completed the Trial of Salutation. Write the code
+      for future challenges in the same folder as this file.
+      <br/><br/>
+      <span class="highlight"><em>For the glory of Python!</em></span>
+    `,
+      [{ name: "PYTHON_CODE_PATH", value: path.dirname(programPath) }]
+    );
+  } 
+  if (testResult.exitCode !== 0)
+      helper.fail(`${stdout}
+      `);

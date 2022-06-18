@@ -1,0 +1,33 @@
+{
+  "title": "Mission Objective: Workspace Setup",
+  "description": "Let's setup your <strong>workspace</strong>!",
+  "validation_fields": [
+    {
+      "name": "answer1",
+      "type": "text",
+      "placeholder": "type your answer here",
+      "label": "Which IDE did you install?"
+    },
+    {
+      "name": "answer2",
+      "type": "text",
+      "placeholder": "type your answer here",
+      "label": "Provide your git project url below."
+    },
+    {
+    "name": "answer3",
+      "type": "text",
+      "placeholder": "type your answer here",
+      "label": "What command did you run to clone your project to local?"
+    },
+    {
+      "name": "answer4",
+      "type": "text",
+      "placeholder": "type your answer here",
+      "label": "What command did you run to create your virtual environment?"
+    }
+  ],
+  "rewards": {
+    "xp": 100
+  }
+}

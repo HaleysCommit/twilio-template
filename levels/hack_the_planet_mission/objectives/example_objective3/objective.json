@@ -1,0 +1,27 @@
+{
+  "title": "Example Objective 3",
+  "description": "You need to master the <strong>Test Driven Development</strong> approach to disable the barrier!",
+  "validation_fields": [
+    {
+      "name": "testingModule",
+      "type": "text",
+      "placeholder": "type your answer here",
+      "label": "Which command did you place at the top of your file to import the pytest testing module?"
+    },
+    {
+      "name": "instantiateScoreTestClassCmd",
+      "type": "text",
+      "placeholder": "type your answer here",
+      "label": "Enter a test case that will instantiate a class of type ScoreTester"
+    },
+    {
+      "name": "pythonPath",
+      "type": "text",
+      "placeholder": "type your answer here",
+      "label": "Paste in the path to your Python interpreter as described in the tutorial."
+    }
+  ],
+  "rewards": {
+    "xp": 100
+  }
+}
